@@ -1,5 +1,6 @@
 # [JOVE GOD](https://github.com/JOVETEAM/jove)
 *TG-CLI based broadcasting bot!*
+
 *JoveGod was based on TeleMute!*
 # Install
 ```
@@ -45,8 +46,11 @@ nano config.py
 screen ./jove
 ```
 Create a bot!
+
 Tasted On Ubuntu 14.04 LTS and 16.04 LTS
+
 For Buying server:
+
 [JoveServer](https://joveserver.com)
 
 # Help And More...
