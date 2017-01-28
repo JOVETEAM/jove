@@ -22,6 +22,10 @@ sudo apt-get install redis-server
 sudo apt-get install libjansson-dev 
 sudo apt-get install libpython-dev 
 sudo apt-get install expat libexpat1-dev 
+sudo apt-get install python3
+sudo apt-get install python3-pip
+sudo pip3 install termcolor
+sudo pip3 install psutil
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
