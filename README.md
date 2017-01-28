@@ -50,9 +50,11 @@ For Buying server:
 [JoveServer](https://joveserver.com)
 
 # Help And More...
-[Click here to join support!](https://telegram.me/MutePuker)
+[Click here to join support!](https://t.me/joinchat/AAAAAD__NnItXiIVc_1bSA)
+
 # Developer
 * [@ByeCoder](https://telegram.me/ByeCoder) - Pouya Poorrahman
 
 <b>Edit and Develop by JoveTeam</b>
+
 <i>special tnx to MuteTeam for this base</i>
