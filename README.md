@@ -1,83 +1,58 @@
-# [TeleMute](https://github.com/MutePuker/TeleMute)
+# [JOVE GOD](https://github.com/JOVETEAM/jove)
 *TG-CLI based broadcasting bot!*
+*JoveGod was based on TeleMute!*
 # Install
 ```
 cd $HOME
-git clone https://github.com/MutePuker/TeleMute.git
-cd TeleMute
+git clone https://github.com/JOVETEAM/jove.git
+cd jove
 chmod +x install.sh
 chmod +x launch.sh
 chmod +x tg
+chmod +x anticrash.py
+chmod +x jove
 ./install.sh
+#هرقسمت که 
+#[y/N]
+#آمد y را نوشته و اینتر بزنید
 ./launch.sh
-# Enter a phone number & confirmation code.
+# شماره تلفن را وارد کرده.سپس کد را بزنید
+#حال سه بار کلید های
+#CTRL و C
+#رافشار دهید
+nano bot.lua
+#به خط 14 رفته و بجای
+#    yourid
+#ایدی خود را قرار دهید.به عنوان مثال: 218722292
+#حال دوکلید
+#CTRL و X
+#را بزنید سپس y
+#و درنهایت اینتر بزنید.حال:
+nano config.py
+#در خط 4
+"yourbotname": [4488, "/home/userserver/foldername", "userserver"],
+#بجای
+#yourbotname:نامی دلخواه که اسم ربات شماست
+#/home/userserver/foldername:آدرس پوشه ربات شما
+#اگر ربات شما در یوزری غیرروت باشد به شکل زیر است
+#/home/userserver/foldername:که userserver همان یوزر سرور شما و foldername همان jove است
+#اگر در روت نصب کرده باشید بدین شکل وارد کنید: /root/foldername
+#userserver:همان یوزر سرور شماست
+#حال دوکلید
+#CTRL و X
+#را بزنید سپس y
+#و درنهایت اینتر بزنید.حال با دستور زیر میتوانید ربات خود را بدون آفی ران کنید:
+screen ./jove
 ```
 Create a bot!
+Tasted On Ubuntu 14.04 LTS and 16.04 LTS
+For Buying server:
+[JoveServer](https://joveserver.com)
+
 # Help And More...
-send ```Your PM``` to @MutePukerBot in telegram
-# Developers
-* [@MutePuker](https://telegram.me/MutePuker) - Shervin
-* [@amirhossein_h_h_h](https://telegram.me/amirhossein_h_h_h) - amirhosein
+[Click here to join support!](https://telegram.me/MutePuker)
+# Developer
+* [@ByeCoder](https://telegram.me/ByeCoder) - Pouya Poorrahman
 
-# Commands
-
-### All Commands
-
->[!/]createsuper [group name]
->
->>[!/]createsuperMute
->>>will create a SuperGroup
->>>
->>>_Only works in realms for admins but, sudo users can use it everywhere_
-
->[!/]ping
->>Test Online
->
->[!/]id
->>Send Your ID
-
-
->[!/]pin
->>Pinned MSG To GRoup
->
->[!/]unpin
->>UnPinned MSG To Group
-
->[!/]lock links
->>Lock Links MSG
-
->[!/]unlock links
->>UNLock Links MSG
->
->[!/]Mute all
->>Mute All MSG To Group
-
-
-> [!/]unmute all 
->>>UnMute All MSG To Group
-
-> [!/]settings
->>>Send Settings MSG
-
-> [!/]fwd
->>>Forward a MSG
-
-> [!/]username [username]
->>>SetUserName For Group
-
-> [!/]echo [MSG}
->>>Echo a MSG
-
-> [!/]setname [NAME]
->>>Set Name For Group
-
-> [!/]edit [TEXT]
->>>Editted MSG
-
-> [!/]view [reply]
->>>View a MSG
-
-> [!/]unmute all 
->>>UnMute All MSG To Group
-
-<b>Powered By MuteTeam</b>
+<b>Edit and Develop by JoveTeam</b>
+<i>special tnx to MuteTeam for this base</i>
