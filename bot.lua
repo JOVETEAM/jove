@@ -15,13 +15,9 @@ sudo_users = {
     0
 }
 
-function string:split(sep)
-  local sep, fields = sep or ":", {}
-  local pattern = string.format("([^%s]+)", sep)
-  self:gsub(pattern, function(c)
-    fields[#fields + 1] = c
-  end)
-  return fields
+---- function leave
+function chat_leave(chat_id, user_id)
+  changeChatMemberStatus(chat_id, user_id, "Left")
 end
 
 function is_sudo(msg)
@@ -1158,6 +1154,14 @@ if input:match("^[#!/][Jj][Oo][Vv][Ee]$") and is_mod(msg) or input:match("^[Jj][
         tdcli.viewMessages(chat_id, {[0] = msg.id_})
         tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '🏅<i>پیام خوانده شد</i>', 1, 'html')
       end
+ if input:match("^[#!/]setnerkh") and is_sudo(msg) or input:match("^setnerkh") and is_sudo(msg) then
+  if not is_admin(msg) then 
+ tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '🏅<i>شما سودو نیستید</i>', 1, 'html')
+end 
+local nerkh = matches[2] 
+redis:set('bot:nerkh',nerkh) 
+ tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '🏅<i>متن شما با موفقیت تنظیم شد</i>', 1, 'html')
+end 			
  if input:match("^[#!/]leave") and is_sudo(msg) then
          tdcli.chat_leave(chat_id, {[0] = msg.id_})
          tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '<code>باشه!خدافظي :)</code>', 1, 'html')
