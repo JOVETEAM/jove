@@ -8,10 +8,6 @@ cd $HOME
 git clone https://github.com/JOVETEAM/jove.git
 cd jove
 chmod +x install.sh
-chmod +x launch.sh
-chmod +x tg
-chmod +x anticrash.py
-chmod +x jove
 ./install.sh
 #هرقسمت که 
 #[y/N]
@@ -28,22 +24,8 @@ nano bot.lua
 #حال دوکلید
 #CTRL و X
 #را بزنید سپس y
-#و درنهایت اینتر بزنید.حال:
-nano config.py
-#در خط 4
-"yourbotname": [4488, "/home/userserver/foldername", "userserver"],
-#بجای
-#yourbotname:نامی دلخواه که اسم ربات شماست
-#/home/userserver/foldername:آدرس پوشه ربات شما
-#اگر ربات شما در یوزری غیرروت باشد به شکل زیر است
-#/home/userserver/foldername:که userserver همان یوزر سرور شما و foldername همان jove است
-#اگر در روت نصب کرده باشید بدین شکل وارد کنید: /root/foldername
-#userserver:همان یوزر سرور شماست
-#حال دوکلید
-#CTRL و X
-#را بزنید سپس y
 #و درنهایت اینتر بزنید.حال با دستور زیر میتوانید ربات خود را بدون آفی ران کنید:
-screen ./jove
+screen ./jove.sh
 ```
 Create a bot!
 
@@ -54,7 +36,7 @@ For Buying server:
 [JoveServer](https://joveserver.com)
 
 # Help And More...
-[Click here to join support!](https://t.me/joinchat/AAAAAD__NnItXiIVc_1bSA)
+[Click here to join support!](https://t.me/joinchat/AAAAAD9Q5GY1hCzCR319zA)
 
 # Developer
 * [@ByeCoder](https://telegram.me/ByeCoder) - Pouya Poorrahman
