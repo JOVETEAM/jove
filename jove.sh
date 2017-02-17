@@ -26,6 +26,5 @@ echo -e "${CYAN}|-------------|---------------|----------------|----------------
 echo -e "${CYAN}|THIS SOURCE BASED ON TELEMUTE AND EDITED FOR JOVEGOD BY POUYA.P|${NC}"
 echo -e "${CYAN}|-------------|---------------|----------------|----------------|${NC}"
 echo -e "${CYAN}YOUR BOT RUNING NOW! PLEASE CLOSE YOUR TERMINAL WINDOW${NC}"
-
   sleep 1000
 done
