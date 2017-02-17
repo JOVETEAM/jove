@@ -1,10 +1,13 @@
 package.path = package.path .. ';.luarocks/share/lua/5.2/?.lua'
 .. ';.luarocks/share/lua/5.2/?/init.lua'
 package.cpath = package.cpath .. ';.luarocks/lib/lua/5.2/?.so'
+
+-- @MuteTeam
 http = require("socket.http")
 https = require("ssl.https")
 http.TIMEOUT = 10
 JSON = require('dkjson')
+-------@MuteTeam
 tdcli = dofile('tdcli.lua')
 redis = (loadfile "./libs/redis.lua")()
 serpent = require('serpent')
@@ -12,12 +15,16 @@ serp = require 'serpent'.block
 sudo_users = {
     218722292,
     yourid,
-    0
+	0
 }
 
----- function leave
-function chat_leave(chat_id, user_id)
-  changeChatMemberStatus(chat_id, user_id, "Left")
+function string:split(sep)
+  local sep, fields = sep or ":", {}
+  local pattern = string.format("([^%s]+)", sep)
+  self:gsub(pattern, function(c)
+    fields[#fields + 1] = c
+  end)
+  return fields
 end
 
 function is_sudo(msg)
@@ -254,26 +261,26 @@ if input:match("^[#!/][Ii][Dd]$") and is_mod(msg) or input:match("^[Ii][Dd]$") a
         text85 = '🎗 `مالک گروه:`\n\n '..owner_list
         tdcli.sendText(chat_id, 0, 0, 1, nil, text85, 1, 'md')
       end
-      if input:match('^[/!#]setowner (.*)') and not input:find('@') and is_sudo(msg) then
-        redis:del('owners:'..chat_id)
-        redis:set('owners:'..chat_id,input:match('^[/!#]setowner (.*)'))
-        tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #کاربر '..input:match('^[/!#]setowner (.*)')..' به عنوان `مالک` منصوب شد\n🎗 کانال: @JoveTeam', 1, 'md')
-      end
+    --  if input:match('^[/!#]setowner (.*)') and not input:find('@') and is_sudo(msg) then
+    --    redis:del('owners:'..chat_id)
+   --     redis:set('owners:'..chat_id,input:match('^[/!#]setowner (.*)'))
+   --     tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #کاربر '..input:match('^[/!#]setowner (.*)')..' به عنوان `مالک` منصوب شد\n🎗 کانال: @JoveTeam', 1, 'md')
+  --    end
 
-      if input:match('^[/!#]setowner (.*)') and input:find('@') and is_owner(msg) then
-        function Inline_Callback_(arg, data)
-          redis:del('owners:'..chat_id)
-          redis:set('owners:'..chat_id,input:match('^[/!#]setowner (.*)'))
-          tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #کاربر '..input:match('^[/!#]setowner (.*)')..' به عنوان `مالک` منصوب شد\n🎗 کانال: @JoveTeam', 1, 'md')
-        end
-        tdcli_function ({ID = "SearchPublicChat",username_ =input:match('^[/!#]setowner (.*)')}, Inline_Callback_, nil)
-      end
+ --     if input:match('^[/!#]setowner (.*)') and input:find('@') and is_owner(msg) then
+  --      function Inline_Callback_(arg, data)
+   --       redis:del('owners:'..chat_id)
+   --       redis:set('owners:'..chat_id,input:match('^[/!#]setowner (.*)'))
+    --      tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #کاربر '..input:match('^[/!#]setowner (.*)')..' به عنوان `مالک` منصوب شد\n🎗 کانال: @JoveTeam', 1, 'md')
+   --     end
+  --      tdcli_function ({ID = "SearchPublicChat",username_ =input:match('^[/!#]setowner (.*)')}, Inline_Callback_, nil)
+  --    end
 
 
-      if input:match('^[/!#]delowner (.*)') and is_sudo(msg) then
-        redis:del('owners:'..chat_id)
-        tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #کاربر '..input:match('^[/!#]delowner (.*)')..' از عنوان `مالک` محروم شد\n🎗 کانال: @JoveTeam', 1, 'md')
-      end
+--      if input:match('^[/!#]delowner (.*)') and is_sudo(msg) then
+ --       redis:del('owners:'..chat_id)
+ --       tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #کاربر '..input:match('^[/!#]delowner (.*)')..' از عنوان `مالک` محروم شد\n🎗 کانال: @JoveTeam', 1, 'md')
+ --     end
       -----------------------------------------------------------------------------------------------------------------------
       if input:match('^[/!#]promote') and is_owner(msg) and msg.reply_to_message_id_ or input:match('^promote') and is_owner(msg) and msg.reply_to_message_id_ or input:match('^ارتقا') and is_owner(msg) and msg.reply_to_message_id_ then
 tdcli.getMessage(chat_id,msg.reply_to_message_id_,setmod_reply,nil)
@@ -282,17 +289,17 @@ if input:match('^[/!#]demote') and is_owner(msg) and msg.reply_to_message_id_ or
 tdcli.getMessage(chat_id,msg.reply_to_message_id_,remmod_reply,nil)
 end
 			
-			sm = input:match('^[/!#]promote (.*)') or input:match('^promote (.*)') or input:match('^ارتقا (.*)')
-if sm and is_owner(msg) then
-  redis:sadd('mods:'..chat_id,sm)
-  tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #انجام شد!\n🏅 #کاربر '..sm..'به عنوان _مدیر_ منصوب شد\n🎗 کانال: @JoveTeam', 1, 'md')
-end
+--			sm = input:match('^[/!#]promote (.*)') or input:match('^promote (.*)') or input:match('^ارتقا (.*)')
+--if sm and is_owner(msg) then
+--  redis:sadd('mods:'..chat_id,sm)
+--  tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #انجام شد!\n🏅 #کاربر '..sm..'به عنوان _مدیر_ منصوب شد\n🎗 کانال: @JoveTeam', 1, 'md')
+--end
 
-dm = input:match('^[/!#]demote (.*)') or input:match('^demote (.*)') or input:match('^عزل (.*)')
-if dm and is_owner(msg) then
-  redis:srem('mods:'..chat_id,dm)
-  tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #انجام شد\n🏅 #کاربر '..dm..'از مقام _مدیر_ عزل شد\n🎗 کانال: @JoveTeam', 1, 'md')
-end
+--dm = input:match('^[/!#]demote (.*)') or input:match('^demote (.*)') or input:match('^عزل (.*)')
+--if dm and is_owner(msg) then
+ -- redis:srem('mods:'..chat_id,dm)
+--  tdcli.sendText(chat_id, 0, 0, 1, nil, '🏅 #انجام شد\n🏅 #کاربر '..dm..'از مقام _مدیر_ عزل شد\n🎗 کانال: @JoveTeam', 1, 'md')
+--end
 
 if input:match('^[/!#]modlist') and is_mod(msg) or input:match('^modlist') and is_mod(msg) or input:match('^لیست مدیران') and is_mod(msg) then
 if redis:scard('mods:'..chat_id) == 0 then
@@ -305,10 +312,10 @@ end
 tdcli.sendText(chat_id, 0, 0, 1, nil, text, 1, 'md')
 end
 -------------------------------------------------------------
-			if input:match('^[/!#]setlink (.*)') and is_owner(msg) then
-redis:set('link'..chat_id,input:match('^[/!#]setlink (.*)'))
-tdcli.sendText(chat_id, 0, 0, 1, nil, 'لينک گروه ذخيره شد🏅\n_کانال_: @JoveTeam', 1, 'html')
-end
+			--if input:match('^[/!#]setlink (.*)') and is_owner(msg) then
+--redis:set('link'..chat_id,input:match('^[/!#]setlink (.*)'))
+	--			tdcli.sendText(chat_id, 0, 0, 1, nil, 'لينک گروه ذخيره شد🏅\n_کانال_: @JoveTeam', 1, 'html')
+--end
 
 if input:match('^[/!#]link$') and is_mod(msg) or input:match('^link$') and is_mod(msg) or input:match('^لينک$') and is_mod(msg) then
 link = redis:get('link'..chat_id)
@@ -1071,7 +1078,7 @@ if input:match("^[#!/][Hh]elp$") and is_mod(msg) or input:match("^[Hh]elp$") and
         .."🏅 ورژن 8.0 اوربیتال ژوپیتر - @JoveTeam"
         tdcli.sendText(chat_id, msg.id_, 0, 1, nil, text, 1, 'md')
       end
-if input:match("^[#!/][Jj][Oo][Vv][Ee]$") and is_mod(msg) or input:match("^[Jj][Oo][Vv][Ee]$") and is_mod(msg) or input:match("^ژوپيتر$") and is_mod(msg) then
+if input:match("^[#!/][Jj]ove$") and is_mod(msg) or input:match("^[Jj]ove$") and is_mod(msg) or input:match("^ژوپیتر$") and is_mod(msg) then
         local text = "🏅 خداي ژوپيتر ورژن 8.0: \n"
 	.." ژوپيتر رباتي قدرتمند جهت مديريت سوپرگروه: \n"
         .."🏅 نوشته شده برپايه tdcli(New TG) \n"
@@ -1087,7 +1094,7 @@ if input:match("^[#!/][Jj][Oo][Vv][Ee]$") and is_mod(msg) or input:match("^[Jj][
         .."🏅 رم: 16Gig \n"
         .."🏅 پشتيباني: JoveServer.Com \n"
         .." ................................. "
-        tdcli.sendText(chat_id, msg.id_, 0, 1, nil, text, 1, 'md')
+          tdcli.sendText(chat_id, msg.id_, 0, 1, nil, text, 1, 'md')
       end
 
       if input:match("^[#!/][Ff]wd$") and is_sudo(msg) or input:match("^[Ff]wd$") and is_sudo(msg) or input:match("^فروارد$") and is_sudo(msg) then
@@ -1153,19 +1160,7 @@ if input:match("^[#!/][Jj][Oo][Vv][Ee]$") and is_mod(msg) or input:match("^[Jj][
       if input:match("^[#!/]view") and is_sudo(msg) or input:match("^view") and is_sudo(msg) then
         tdcli.viewMessages(chat_id, {[0] = msg.id_})
         tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '🏅<i>پیام خوانده شد</i>', 1, 'html')
-      end
- if input:match("^[#!/]setnerkh") and is_sudo(msg) or input:match("^setnerkh") and is_sudo(msg) then
-  if not is_admin(msg) then 
- tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '🏅<i>شما سودو نیستید</i>', 1, 'html')
-end 
-local nerkh = matches[2] 
-redis:set('bot:nerkh',nerkh) 
- tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '🏅<i>متن شما با موفقیت تنظیم شد</i>', 1, 'html')
-end 			
- if input:match("^[#!/]leave") and is_sudo(msg) then
-         tdcli.chat_leave(chat_id, {[0] = msg.id_})
-         tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '<code>باشه!خدافظي :)</code>', 1, 'html')
-       end
+      end			
     end
 
     local input = msg.content_.text_
